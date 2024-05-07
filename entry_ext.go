@@ -2,14 +2,18 @@ package logrus
 
 func (entry *Entry) ELog(level Level, err error, args ...interface{}) {
 	if err != nil {
-		entry.Log(level, args...)
+		if len(args) > 0 {
+			entry.Log(level, args...)
+		}
 		entry.Log(level, err)
 	}
 }
 
 func (entry *Entry) ELogln(level Level, err error, args ...interface{}) {
 	if err != nil {
-		entry.Logln(level, args...)
+		if len(args) > 0 {
+			entry.Logln(level, args...)
+		}
 		entry.Logln(level, err)
 	}
 }

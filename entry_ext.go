@@ -20,8 +20,8 @@ func (entry *Entry) ELogln(level Level, err error, args ...interface{}) {
 
 func (entry *Entry) ELogf(level Level, err error, format string, args ...interface{}) {
 	if err != nil {
-		entry.Logf(level, format, args...)
-		entry.Logf(level, err.Error())
+		args = append(args, err)
+		entry.Logf(level, format+` => %+v`, args...)
 	}
 }
 

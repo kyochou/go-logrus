@@ -301,15 +301,7 @@ func (entry *Entry) write() {
 // For this behaviour Entry.Panic or Entry.Fatal should be used instead.
 func (entry *Entry) Log(level Level, args ...interface{}) {
 	if entry.Logger.IsLevelEnabled(level) {
-		fmtargs := make([]any, max(0, len(args)*2-1))
-		for i := range fmtargs {
-			if i%2 != 0 {
-				fmtargs[i] = "\t"
-			} else {
-				fmtargs[i] = args[i/2]
-			}
-		}
-		entry.log(level, fmt.Sprint(fmtargs...))
+		entry.log(level, fmt.Sprint(args...))
 	}
 }
 

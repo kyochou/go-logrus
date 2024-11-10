@@ -25,6 +25,16 @@ func (entry *Entry) ELogf(level Level, err error, format string, args ...interfa
 	}
 }
 
+func (entry *Entry) EFatal(err error, args ...interface{}) {
+	entry.ELog(FatalLevel, err, args...)
+}
+func (entry *Entry) EFatalln(err error, args ...interface{}) {
+	entry.ELogln(FatalLevel, err, args...)
+}
+func (entry *Entry) EFatalf(err error, format string, args ...interface{}) {
+	entry.ELogf(FatalLevel, err, format, args...)
+}
+
 func (entry *Entry) EError(err error, args ...interface{}) {
 	entry.ELog(ErrorLevel, err, args...)
 }
